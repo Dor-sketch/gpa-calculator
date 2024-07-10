@@ -171,3 +171,16 @@ function addNewCourse() {
 }
 
 document.addEventListener('DOMContentLoaded', updateCourseList);
+
+document.addEventListener('DOMContentLoaded', function() {
+    var slider = document.getElementById('points');
+    var output = document.getElementById('pointsValue');
+
+    slider.addEventListener('input', function() {
+        output.innerHTML = this.value;
+        // Enhanced visual effect: Change the text color based on the slider's value.
+        // This creates a gradient from red to green as the slider moves from 0 to 10.
+        var colorIntensity = Math.round(this.value * 25.5);
+        output.style.color = `rgb(${255 - colorIntensity}, ${colorIntensity}, 0)`;
+    });
+});

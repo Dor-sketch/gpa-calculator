@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    line-height: 1.6;
 }
 
 header {
@@ -63,6 +64,7 @@ header {
 h1 {
     font-size: 2em;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #tutorial {
@@ -90,6 +92,16 @@ h1 {
 
 .form-group input[type="range"] {
     width: 90%;
+}
+
+/* Slider thumb style when active */
+input[type="range"]:active::-webkit-slider-thumb {
+    background-color: #666; /* Darker thumb */
+}
+
+/* For Firefox */
+input[type="range"]:active::-moz-range-thumb {
+    background-color: #666;
 }
 
 .button-group {
@@ -255,13 +267,36 @@ text-align: left;
     }
 
     .container {
-        padding: 0.4em;
+        padding: 0;
+        margin-top: 0.5em;
+        width: 100%;
+    }
+
+    p {
+        margin: 0.7em;
     }
 
     .form-group input[type="text"] {
-        width: calc(100% - 20px);
+        width: calc(80% - 20px);
         padding: 0.4em;
         margin: 0 0.5em;
+
+    }
+    .form-group {
+        margin: 0.5em;
+
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column; /* Stack children vertically */
+        align-items: center; /* Center children horizontally */
+        justify-content: center; /* Center children vertically if needed */
+    }
+
+    .form-group input[type="range"] {
+        width: 80%; /* Adjust width as needed */
+        /* margin: 0 auto; is not necessary with flexbox centering */
     }
 
 }
