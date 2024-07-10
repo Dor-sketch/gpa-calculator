@@ -1,0 +1,100 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f4f4f4 0%, #add8e6 100%);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+}
+
+.form-group input[type="range"] {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button-group button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+#courseListContainer {
+    overflow-y: auto;
+    max-height: 300px;
+    margin-top: 20px;
+}
+
+#courseList {
+    list-style: none;
+    padding: 0;
+}
+
+#courseList li {
+    background-color: #f4f4f4;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #007BFF;
+    font-size: 1.2em;
+    transform: translateX(-100%);
+    animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+    to {
+        transform: translateX(0);
+    }
+}
