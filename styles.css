@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     background: linear-gradient(135deg, #f4f4f4 0%, #add8e6 100%);
     margin: 0;
     display: flex;
@@ -10,7 +10,6 @@ body {
 header {
     background-color: #007BFF;
     color: white;
-    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,8 +20,16 @@ header {
     z-index: 1000;
 }
 
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+.header-buttons svg {
+    width: 20px;
+    height: 20px;
+}
 .header-buttons button {
-    padding: 10px 20px;
+    padding: 10px;
     border: none;
     background-color: white;
     color: #007BFF;
@@ -30,12 +37,15 @@ header {
     border-radius: 5px;
     font-size: 1em;
     transition: background-color 0.3s, transform 0.2s;
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .header-buttons button:hover {
     background-color: #0056b3;
     transform: scale(1.1);
+    color: white;
 }
 
 .container {
@@ -79,8 +89,7 @@ h1 {
 }
 
 .form-group input[type="range"] {
-    width: 80%;
-    margin: 0 10%;
+    width: 90%;
 }
 
 .button-group {
@@ -90,7 +99,6 @@ h1 {
 }
 
 .button-group button {
-    padding: 10px 20px;
     border: none;
     background-color: #007BFF;
     color: #fff;
@@ -175,7 +183,6 @@ h1 {
 footer {
     margin-top: auto;
     text-align: center;
-    padding: 10px;
     background-color: #007BFF;
     color: white;
     width: 100%;
@@ -189,4 +196,72 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Base button styling */
+/* Adjusted button styling for increased size */
+#addCourseButton {
+    border: none;
+    color: white;
+    padding: 0.5em 1em; /* Padding for larger clickable area */
+    font-size: 20px; /* Larger font size */
+    border-radius: 10px; /* More pronounced rounded corners */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+
+    background: none;
+    }
+
+#addCourseButton svg:hover, #addCourseButton svg:focus {
+    transform: scale(1.05); /* Slightly increase size on hover/focus for interactive feedback */
+}
+
+#tutorial {
+text-align: left;
+}
+
+/* SVG icon styling */
+#addCourseButton svg {
+    width: 40px; /* Increase SVG width */
+    height: 40px; /* Increase SVG height */
+    fill: white; /* SVG icon color */
+    vertical-align: middle; /* Align icon with any potential text or baseline */
+}
+
+/* Accessibility: Ensure the button has a focus style for keyboard navigation */
+#addCourseButton svg:focus {
+    outline: 2px solid #fff; /* White outline */
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    #loadCoursesText, #saveCoursesText {
+        display: none;
+    }
+
+    .header-buttons svg {
+        width: 40px;
+        height: 40px;
+        background: none;
+        padding: 0;
+        background: #007BFF;
+    }
+    .header-buttons button {
+        padding: 0;
+    }
+
+    .container {
+        padding: 0.4em;
+    }
+
+    .form-group input[type="text"] {
+        width: calc(100% - 20px);
+        padding: 0.4em;
+        margin: 0 0.5em;
+    }
+
 }
