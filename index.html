@@ -1,16 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7HFKFX0PR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-T7HFKFX0PR');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive GPA Calculator</title>
+    <meta name="description" content="Interactive GPA calculator that allows you to add, edit, and calculate your GPA based on course scores and credit points.">
+    <meta name="keywords" content="GPA calculator, interactive, course scores, credit points">
+    <meta name="author" content="Dor Pascal">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="og:title" content="Interactive GPA Calculator">
+    <meta name="og:description" content="Interactive GPA calculator that allows you to add, edit, and calculate your GPA based on course scores and credit points.">
+    <meta name="og:image" content="https://dorpascal.com/gpa-calculator/preview.png">
+    <meta name="og:url" content="https://dorpascal.com/gpa-calculator/">
+    <meta name="og:site_name" content="Interactive GPA Calculator">
+    <meta name="og:locale" content="en_US">
+    <meta name="og:type" content="website">
+    <meta name="og:author" content="Dor Pascal">
+    <meta name="og:published_time" content="2024-07-11">
+    <meta name="og:modified_time" content="2024-07-11">
+    <meta name="og:updated_time" content="2024-07-11">
+    <link rel="canonical" href="https://dorpascal.com/gpa-calculator/">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>GPA Calculator</h1>
+        <div class="header-buttons">
+            <button onclick="loadCourses()">Load Courses</button>
+            <button onclick="saveCourses()">Export Courses</button>
+        </div>
+    </header>
+    <div class="container">
+        <div id="tutorial">
+            <p>This tool allows you to add, edit, and calculate your GPA based on course scores and credit points.</p>
+            <p>Use the sliders to input the score and points for each course, and click "Add Course" to add it to the list. Click on any course in the list to edit it.</p>
+        </div>
         <div class="form-group">
             <label for="courseName">Course Name:</label>
             <input type="text" id="courseName">
@@ -26,15 +61,31 @@
             <span id="pointsValue">5</span>
         </div>
         <div class="button-group">
-            <button onclick="addCourse()">Add Course</button>
-            <button onclick="calculateGPA()">Calculate GPA</button>
-            <button onclick="saveCourses()">Save Courses</button>
-            <button onclick="loadCourses()">Load Courses</button>
+            <button id="addCourseButton" onclick="addCourse()">Add Course</button>
+        </div>
+        <div id="averageContainer">
+            <h2>Average GPA: <span id="averageGPA">0.00</span></h2>
         </div>
         <div id="courseListContainer">
-            <ul id="courseList"></ul>
+            <table id="courseTable">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Score</th>
+                        <th>Points</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="courseList"></tbody>
+            </table>
+        </div>
+        <div class="button-group">
+            <button class="green-button" onclick="addNewCourse()"><span class="plus-icon">+</span> Add New Course</button>
         </div>
     </div>
+    <footer>
+        <p>Visit my website: <a href="https://dorpascal.com" target="_blank">dorpascal.com</a></p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

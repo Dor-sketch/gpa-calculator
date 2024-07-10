@@ -1,4 +1,5 @@
 let courses = [];
+let editIndex = -1;
 
 function updateScoreValue(value) {
     document.getElementById('scoreValue').textContent = value;
@@ -18,8 +19,16 @@ function addCourse() {
         return;
     }
 
-    courses.push({ name, score, points });
-    Swal.fire('Success', 'Course added successfully', 'success');
+    if (editIndex >= 0) {
+        courses[editIndex] = { name, score, points };
+        Swal.fire('Success', 'Course updated successfully', 'success');
+        editIndex = -1;
+        document.getElementById('addCourseButton').textContent = 'Add Course';
+    } else {
+        courses.push({ name, score, points });
+        Swal.fire('Success', 'Course added successfully', 'success');
+    }
+
     document.getElementById('courseName').value = '';
     document.getElementById('score').value = 50;
     document.getElementById('points').value = 5;
@@ -30,8 +39,7 @@ function addCourse() {
 
 function calculateGPA() {
     if (courses.length === 0) {
-        Swal.fire('Error', 'No courses added', 'error');
-        return;
+        return 0;
     }
 
     let totalScore = 0;
@@ -43,12 +51,15 @@ function calculateGPA() {
     }
 
     if (totalPoints === 0) {
-        Swal.fire('Error', 'Total points cannot be zero', 'error');
-        return;
+        return 0;
     }
 
-    const gpa = totalScore / totalPoints;
-    Swal.fire('GPA', `Your GPA is ${gpa.toFixed(2)}`, 'info');
+    return totalScore / totalPoints;
+}
+
+function updateAverageGPA() {
+    const gpa = calculateGPA();
+    document.getElementById('averageGPA').textContent = gpa.toFixed(2);
 }
 
 function saveCourses() {
@@ -60,7 +71,7 @@ function saveCourses() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    Swal.fire('Success', 'Courses saved successfully', 'success');
+    Swal.fire('Success', 'Courses exported successfully', 'success');
 }
 
 function loadCourses() {
@@ -87,14 +98,76 @@ function loadCourses() {
     input.click();
 }
 
+function editCourse(index) {
+    const course = courses[index];
+    document.getElementById('courseName').value = course.name;
+    document.getElementById('score').value = course.score;
+    document.getElementById('points').value = course.points;
+    updateScoreValue(course.score);
+    updatePointsValue(course.points);
+    editIndex = index;
+    document.getElementById('addCourseButton').textContent = 'Update Course';
+    highlightRow(index);
+}
+
+function deleteCourse(index) {
+    courses.splice(index, 1);
+    Swal.fire('Success', 'Course deleted successfully', 'success');
+    updateCourseList();
+}
+
+function highlightRow(index) {
+    const rows = document.querySelectorAll('#courseList tr');
+    rows.forEach(row => row.classList.remove('highlighted'));
+    rows[index].classList.add('highlighted');
+}
+
+function makeCellEditable(cell, index, key) {
+    cell.contentEditable = true;
+    cell.onblur = function () {
+        const newValue = cell.textContent;
+        if (key === 'name') {
+            courses[index].name = newValue;
+        } else if (key === 'score') {
+            courses[index].score = parseFloat(newValue);
+        } else if (key === 'points') {
+            courses[index].points = parseFloat(newValue);
+        }
+        updateAverageGPA();
+        updateCourseList();
+    };
+}
+
 function updateCourseList() {
     const courseList = document.getElementById('courseList');
     courseList.innerHTML = '';
-    courses.forEach(course => {
-        const li = document.createElement('li');
-        li.textContent = `${course.name}: Score=${course.score}, Points=${course.points}`;
-        li.style.borderLeftColor = `hsl(${course.score}, 100%, 50%)`;
-        courseList.appendChild(li);
+    courses.forEach((course, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="editable" onclick="makeCellEditable(this, ${index}, 'name')">${course.name}</td>
+            <td class="editable" onclick="makeCellEditable(this, ${index}, 'score')">${course.score}</td>
+            <td class="editable" onclick="makeCellEditable(this, ${index}, 'points')">${course.points}</td>
+            <td>
+                <span class="edit" onclick="editCourse(${index})">Edit</span>
+                <span class="delete" onclick="deleteCourse(${index})">x</span>
+            </td>
+        `;
+        row.style.borderLeftColor = `hsl(${course.score}, 100%, 50%)`;
+        row.onclick = () => highlightRow(index);
+        courseList.appendChild(row);
     });
-    gsap.fromTo("#courseList li", { x: -100 }, { x: 0, stagger: 0.1 });
+    gsap.fromTo("#courseList tr", { x: -100 }, { x: 0, stagger: 0.1 });
+    updateAverageGPA();
 }
+
+function addNewCourse() {
+    document.getElementById('courseName').value = '';
+    document.getElementById('score').value = 50;
+    document.getElementById('points').value = 5;
+    updateScoreValue(50);
+    updatePointsValue(5);
+    editIndex = -1;
+    document.getElementById('addCourseButton').textContent = 'Add Course';
+}
+
+document.addEventListener('DOMContentLoaded', updateCourseList);
