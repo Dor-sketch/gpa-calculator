@@ -72,12 +72,13 @@
 
 .spinnersContainer h3 {
 
+        margin: 20px 0;
         font-family: 'Comic Sans MS', cursive, sans-serif; /* Playful font */
         color: #333; /* Readable text color */
 
 
         display: block;
-        margin:0;
+        margin-bottom: 10px;
         font-size: 18px;
         color: #5D3B99; /* Fun purple */
     }
@@ -113,3 +114,4 @@ body {
 overflow-x: hidden;
 overflow-y: scroll;
 }
+
