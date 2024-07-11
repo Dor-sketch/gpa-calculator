@@ -213,27 +213,58 @@ function addNewCourse() {
 
 document.addEventListener('DOMContentLoaded', updateCourseList);
 
-document.addEventListener('DOMContentLoaded', function() {
-    var slider = document.getElementById('score');
-    var output = document.getElementById('scoreValue');
+document.addEventListener('DOMContentLoaded', () => {
+    // Highlight row being edited
+    const editButtons = document.querySelectorAll('.edit-button'); // Assuming edit buttons have this class
+    editButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.closest('tr').classList.add('editing'); // Add 'editing' class to the parent row
+        });
+    });
 
-    slider.addEventListener('input', function() {
-        output.innerHTML = this.value;
-        // Create a gradient from red to a very dark green as the slider moves from 0 to 100.
-        // Calculate the red component to decrease with increasing value.
-        var redIntensity = 255 - Math.round(this.value * 2.55);
-        // Calculate the green component to increase with increasing value, but start from a lower base to ensure it's dark.
-        var greenIntensity = Math.round(this.value * 1.02);
-        // Keep the blue component minimal to assist in darkening the green without making it too light.
-        var blueIntensity = this.value < 50 ? 0 : Math.round((this.value - 50) * 1.02);
+    // Dynamically add shade based on the score
+    const rows = document.querySelectorAll('#courseTable tbody tr');
+    rows.forEach(row => {
+        const score = parseInt(row.querySelector('.score').textContent, 10); // Assuming score is in a cell with class 'score'
+        const shade = getShadeBasedOnScore(score);
+        row.style.backgroundColor = shade;
+    });
 
-        output.style.color = `rgb(${redIntensity}, ${greenIntensity}, ${blueIntensity})`;
-
-        // also paint the slider
-        slider.style.background = `linear-gradient(to right, rgb(${redIntensity}, ${greenIntensity}, ${blueIntensity}) ${this.value}%, #ccc ${this.value}%)`;
-
+    // Make table sortable
+    const headers = document.querySelectorAll('#courseTable th');
+    headers.forEach(header => {
+        header.addEventListener('click', function() {
+            sortTableByColumn(this.cellIndex);
+        });
     });
 });
+
+function getShadeBasedOnScore(score) {
+    // Example: Return a shade of green for high scores, and red for low scores
+    if (score > 80) return '#ccffcc'; // Light green
+    else if (score > 60) return '#ffffcc'; // Light yellow
+    else return '#ffcccc'; // Light red
+}
+
+function sortTableByColumn(column, ascending = true) {
+    const table = document.querySelector('#courseTable');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    const sortedRows = rows.sort((a, b) => {
+        const aValue = a.querySelectorAll('td')[column].textContent.trim();
+        const bValue = b.querySelectorAll('td')[column].textContent.trim();
+
+        return ascending ? aValue.localeCompare(bValue, undefined, {numeric: true}) : bValue.localeCompare(aValue, undefined, {numeric: true});
+    });
+
+    // Remove existing rows and re-add the sorted rows
+    while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+    sortedRows.forEach(row => tbody.appendChild(row));
+
+    // Toggle the direction for the next click
+    ascending = !ascending;
+}
 
 function showTutorial() {
     document.getElementById("tutorialPopup").style.display = "block";
@@ -266,3 +297,58 @@ document.addEventListener('DOMContentLoaded', function() {
     courseIndex++;
 }
 );
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const headers = document.querySelectorAll('#courseTable th');
+    let sortOrder = true; // true for ascending, false for descending
+
+    headers.forEach((header, index) => {
+        if (header.textContent === 'Name' || header.textContent === 'Score' || header.textContent === 'Points') {
+            header.style.cursor = 'pointer';
+            header.addEventListener('click', () => {
+                sortTableByColumn(index, sortOrder);
+                sortOrder = !sortOrder; // Toggle sort order for next click
+                addShadesBasedOnScore();
+            });
+        }
+    });
+
+    // Initial shading based on score
+    addShadesBasedOnScore();
+});
+
+function sortTableByColumn(columnIndex, ascending = true) {
+    const table = document.querySelector('#courseTable tbody');
+    const rows = Array.from(table.querySelectorAll('tr'));
+    const columnType = columnIndex === 1 ? 'number' : 'string'; // Assuming Score is the second column
+
+    const sortedRows = rows.sort((a, b) => {
+        const aValue = a.querySelectorAll('td')[columnIndex].textContent.trim();
+        const bValue = b.querySelectorAll('td')[columnIndex].textContent.trim();
+
+        if (columnType === 'number') {
+            return ascending ? aValue - bValue : bValue - aValue;
+        } else {
+            return ascending ? aValue.localeCompare(bValue, undefined, {numeric: true}) : bValue.localeCompare(aValue, undefined, {numeric: true});
+        }
+    });
+
+    // Reattach sorted rows
+    while (table.firstChild) table.removeChild(table.firstChild);
+    sortedRows.forEach(row => table.appendChild(row));
+}
+
+function addShadesBasedOnScore() {
+    const rows = document.querySelectorAll('#courseTable tbody tr');
+    rows.forEach(row => {
+        const score = parseInt(row.querySelectorAll('td')[1].textContent, 10); // Assuming Score is the second column
+        row.style.backgroundColor = getShadeBasedOnScore(score);
+    });
+}
+
+function getShadeBasedOnScore(score) {
+    if (score >= 90) return '#ccffcc'; // Light green for high scores
+    else if (score >= 70) return '#ffffcc'; // Light yellow for medium scores
+    else return '#ffcccc'; // Light red for low scores
+}

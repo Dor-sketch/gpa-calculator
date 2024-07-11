@@ -1,13 +1,13 @@
 :root {
-    --primary-color: #94C8FF;
-    --text-color: #303030;
-    --hover-color: #007BFF;
-    --secondary-color: #17477b;
-    --primary-color-light: #c7e2ff;
-    --text-color-light: #f4f4f4;
-    --hover-color-light: #007BFF;
-    --secondary-color-light: #17477b;
-    --primary-color-dark: #5e9cff;
+    --primary-color: #4A90E2; /* Adjusted for a more vibrant primary color */
+    --text-color: #333333; /* Darker for better readability */
+    --hover-color: #007AFF; /* A slightly different blue for hover states */
+    --secondary-color: #205493; /* Darker secondary color for contrast */
+    --primary-color-light: #B3D4FC; /* Lighter primary color for backgrounds */
+    --text-color-light: #FAFAFA; /* Lighter text, for dark backgrounds */
+    --hover-color-light: #005ECF; /* Light hover color for interactive elements */
+    --secondary-color-light: #2E6CA4; /* A lighter shade of the secondary color */
+    --primary-color-dark: #3E70A4; /* Darkened primary color for depth */
 }
 
 body {
@@ -154,65 +154,7 @@ input[type="range"]:active::-moz-range-thumb {
     margin: 20px 0;
 }
 
-#courseListContainer {
-    overflow-y: auto;
-    margin-top: 20px;
-    max-height: calc(50vh - 44px);
-}
 
-#courseTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    border: 1px solid #607d8b;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-}
-
-#courseTable th, #courseTable td {
-    padding: 10px;
-    border: 1px solid #303030;
-    text-align: center;
-}
-
-#courseTable th {
-    background-color: var(--primary-color-light);
-    color: var(--text-color);
-}
-
-#courseTable td {
-    position: relative;
-    background: var(--secondary-color-light);
-    color: #ffffff;
-}
-
-#courseTable td .delete {
-    color: red;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-#courseTable td .edit {
-    color: var(--primary-color-light);
-    cursor: pointer;
-    margin-left: 10px;
-    font-weight: bold;
-}
-
-#courseTable td .edit:hover {
-    text-decoration: underline;
-}
-
-#courseTable td.editable:hover {
-    background-color: var(--primary-color);
-    cursor: pointer;
-}
-
-#courseTable tr.highlighted {
-    background-color: #ffff99;
-    transition: background-color 0.5s;
-}
 
 footer {
     margin-top: auto;

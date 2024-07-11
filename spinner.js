@@ -131,13 +131,13 @@ function updateScoreColor() {
 
     function startSpinPoints(event, cell) {
         event.preventDefault();
-        const wheel = cell.querySelector('.wheelPoints');
+        const wheel = cell.querySelector('.pointsWheel');
         startY = event.touches ? event.touches[0].clientY : event.clientY;
         lastY = startY;
         const transformMatrix = window.getComputedStyle(wheel).transform;
         startTransform = transformMatrix !== 'none' ? parseInt(transformMatrix.split(',')[5].trim()) : 0;
-        document.onmousemove = document.ontouchmove = (e) => spinMove(e, wheel);
-        document.onmouseup = document.ontouchend = () => endSpin(wheel, cell);
+        document.onmousemove = document.ontouchmove = (e) => spinMovePoints(e, wheel);
+        document.onmouseup = document.ontouchend = () => endSpinPoints(wheel, cell);
     }
 // Adjust the inertiaFactor to increase responsiveness
 
@@ -214,5 +214,3 @@ function synchronizePointsValue() {
             synchronizePointsValue();
         };
     });
-
-
