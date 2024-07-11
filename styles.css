@@ -1,3 +1,15 @@
+:root {
+    --primary-color: #94C8FF;
+    --text-color: #303030;
+    --hover-color: #007BFF;
+    --secondary-color: #17477b;
+    --primary-color-light: #c7e2ff;
+    --text-color-light: #f4f4f4;
+    --hover-color-light: #007BFF;
+    --secondary-color-light: #17477b;
+    --primary-color-dark: #5e9cff;
+}
+
 body {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     background: linear-gradient(135deg, #f4f4f4 0%, #add8e6 100%);
@@ -9,8 +21,8 @@ body {
 }
 
 header {
-    background-color: #007BFF;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,7 +45,7 @@ header {
     padding: 10px;
     border: none;
     background-color: white;
-    color: #007BFF;
+    color: var(--text-color);
     cursor: pointer;
     border-radius: 5px;
     font-size: 1em;
@@ -44,14 +56,13 @@ header {
 }
 
 .header-buttons button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-color);
     transform: scale(1.1);
-    color: white;
+    color: var(--hover-color);
 }
 
 .container {
     background-color: #fff;
-    padding: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
@@ -107,12 +118,12 @@ input[type="range"]:active::-moz-range-thumb {
 .button-group {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    flex-direction: column;
 }
 
 .button-group button {
     border: none;
-    background-color: #007BFF;
+    background-color: var(--primary-color);
     color: #fff;
     cursor: pointer;
     border-radius: 5px;
@@ -121,7 +132,7 @@ input[type="range"]:active::-moz-range-thumb {
 }
 
 .button-group button:hover {
-    background-color: #0056b3;
+    background-color: var(--hover-color);
     transform: scale(1.1);
 }
 
@@ -145,29 +156,35 @@ input[type="range"]:active::-moz-range-thumb {
 
 #courseListContainer {
     overflow-y: auto;
-    max-height: 300px;
     margin-top: 20px;
+    max-height: calc(50vh - 44px);
 }
 
 #courseTable {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
+    border: 1px solid #607d8b;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 #courseTable th, #courseTable td {
     padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
+    border: 1px solid #303030;
+    text-align: center;
 }
 
 #courseTable th {
-    background-color: #007BFF;
-    color: white;
+    background-color: var(--primary-color-light);
+    color: var(--text-color);
 }
 
 #courseTable td {
     position: relative;
+    background: var(--secondary-color-light);
+    color: #ffffff;
 }
 
 #courseTable td .delete {
@@ -177,13 +194,18 @@ input[type="range"]:active::-moz-range-thumb {
 }
 
 #courseTable td .edit {
-    color: #007BFF;
+    color: var(--primary-color-light);
     cursor: pointer;
     margin-left: 10px;
+    font-weight: bold;
+}
+
+#courseTable td .edit:hover {
+    text-decoration: underline;
 }
 
 #courseTable td.editable:hover {
-    background-color: #f0f8ff;
+    background-color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -195,8 +217,8 @@ input[type="range"]:active::-moz-range-thumb {
 footer {
     margin-top: auto;
     text-align: center;
-    background-color: #007BFF;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -204,8 +226,7 @@ footer {
  animation: pulsing 0.3 ease infinite;
 }
 footer a {
-    color: white;
-    text-decoration: none;
+    color: var(--text-color);
 }
 
 footer a:hover {
@@ -215,19 +236,22 @@ footer a:hover {
 /* Base button styling */
 /* Adjusted button styling for increased size */
 #addCourseButton {
+    display: inline-block;
+    padding: 0.3em 3em;
     border: none;
+    background-color: #333333;
     color: white;
-    padding: 0.5em 1em; /* Padding for larger clickable area */
-    font-size: 20px; /* Larger font size */
-    border-radius: 10px; /* More pronounced rounded corners */
-    transition: transform 0.3s ease; /* Smooth transition for hover effect */
-
-    background: none;
-    }
-
-#addCourseButton svg:hover, #addCourseButton svg:focus {
-    transform: scale(1.05); /* Slightly increase size on hover/focus for interactive feedback */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+
 
 #tutorial {
 text-align: left;
@@ -251,6 +275,56 @@ input[type="range"] {
     /* Base slider styles */
     cursor: pointer; /* Change cursor to indicate it's draggable */
     transition: transform 0.2s ease; /* Smooth transition for size changes */
+}
+
+#scoreValue, .number {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 10px;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color : var(--hover-color);
 }
 
 
@@ -278,7 +352,7 @@ input[type="range"] {
         /* Increase size when active */
         transform: scale(1.1);
     }
-    #loadCoursesText, #saveCoursesText {
+    #loadCoursesText, #saveCoursesText, #tutorialText {
         display: none;
     }
 
@@ -287,7 +361,7 @@ input[type="range"] {
         height: 40px;
         background: none;
         padding: 0;
-        background: #007BFF;
+        background: var(--primary-color);
     }
     .header-buttons button {
         padding: 0;
@@ -296,7 +370,7 @@ input[type="range"] {
     .container {
         padding: 0;
         margin-top: 0.5em;
-        width: 100%;
+        width: 96%;
     }
 
     p {
@@ -330,50 +404,70 @@ input[type="range"] {
         transition: transform 0.2s ease; /* Smooth transition for size changes */
     }
 
-
-
-}
-
-#scoreValue {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: 0 10px;
- text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.modal {
+    .form-group {
     display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
+    }
+
+
+}
+/*
+.form-group:not(body > div.container > div:nth-child(2)) {
+    display: none;
+} */
+
+    .form-group {
+    display: none;
+    }
+
+    .form-group-Name {
+        margin: 20px 0;
+        font-family: 'Comic Sans MS', cursive, sans-serif; /* Playful font */
+        color: #333; /* Readable text color */
+    }
+
+    .form-group-Name label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #5D3B99; /* Fun purple */
+    }
+
+.form-group-Name input[type="text"] {
+    width: 90%;
+    padding: 8px; /* Reduced padding */
+    border: 2px solid #5D3B99; /* Fun purple border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Smaller font size */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions */
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
+    .form-group-Name input[type="text"]:focus {
+        border-color: #F39C12; /* Bright focus color */
+        box-shadow: 0 0 8px rgba(243, 156, 18, 0.6); /* Soft glow effect */
+        outline: none; /* Removes default focus outline */
+    }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
+    .form-group-name {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        background-color: #f4f4f4;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px;
+        }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+
+        h2 {
+    font-family: 'Arial', sans-serif; /* Modern, readable font */
+    color: #1f1f1f; /* A calming, academic blue */
+    background-color: #E9F7FE; /* Light blue background for emphasis */
+    padding: 10px 20px; /* Adequate padding for visual comfort */
+    border-radius: 8px; /* Soft rounded corners */
+    border-left: 5px solid #2E86C1; /* A darker blue accent on the left */
+    margin: 20px 0; /* Ensure it stands out by adding some margin */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center the text for emphasis */
 }
