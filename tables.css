@@ -106,3 +106,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: auto; /* Makes table scrollable when content overflows */
 }
+
+#courseListContainer {
+    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: 100vh; /* Adjust based on your needs */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}

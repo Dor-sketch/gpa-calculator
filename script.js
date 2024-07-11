@@ -355,3 +355,6 @@ function addShadesBasedOnScore() {
         row.style.backgroundColor = getShadeBasedOnScore(score);
     });
 }
+document.querySelector('.courseListContainer').addEventListener('touchmove', function(e) {
+    e.stopPropagation(); // Prevents the event from bubbling up to the body
+}, false);
