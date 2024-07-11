@@ -1,13 +1,22 @@
 :root {
-    --primary-color: #4A90E2; /* Vibrant blue */
-    --text-color: #0c0c0c; /* Dark text for readability */
-    --hover-color: #E0E0E0; /* Light gray for hover states */
-    --secondary-color: #E8EAF6; /* Light gray for secondary color */
-    --primary-color-light: #F1F8FF; /* Very light blue for backgrounds */
-    --text-color-light: #FFFFFF; /* White text for dark backgrounds */
-    --hover-color-light: #cfe5f4; /* Light blue for hover color */
-    --secondary-color-light: #CFD8DC; /* Light gray for alternating rows */
-    --primary-color-dark: #3E70A4; /* Darkened primary color */
+    --primary-color: #4A90E2;
+    /* Vibrant blue */
+    --text-color: #0c0c0c;
+    /* Dark text for readability */
+    --hover-color: #E0E0E0;
+    /* Light gray for hover states */
+    --secondary-color: #E8EAF6;
+    /* Light gray for secondary color */
+    --primary-color-light: #F1F8FF;
+    /* Very light blue for backgrounds */
+    --text-color-light: #FFFFFF;
+    /* White text for dark backgrounds */
+    --hover-color-light: #cfe5f4;
+    /* Light blue for hover color */
+    --secondary-color-light: #CFD8DC;
+    /* Light gray for alternating rows */
+    --primary-color-dark: #3E70A4;
+    /* Darkened primary color */
 }
 
 
@@ -39,10 +48,12 @@ header {
     display: flex;
     gap: 10px;
 }
+
 .header-buttons svg {
     width: 20px;
     height: 20px;
 }
+
 .header-buttons button {
     padding: 10px;
     border: none;
@@ -64,14 +75,17 @@ header {
 }
 
 .container {
-    background-color: #fff;
+    background-color: #f4f4f4;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
-    width: 90%;
-    max-width: 600px;
     margin: 20px auto;
-    flex-grow: 1;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    padding-top: 0;
+    flex-direction: column;
+    width: 80%;
 }
 
 h1 {
@@ -109,7 +123,8 @@ h1 {
 
 /* Slider thumb style when active */
 input[type="range"]:active::-webkit-slider-thumb {
-    background-color: #666; /* Darker thumb */
+    background-color: #666;
+    /* Darker thumb */
 }
 
 /* For Firefox */
@@ -152,9 +167,6 @@ input[type="range"]:active::-moz-range-thumb {
     margin-right: 5px;
 }
 
-#averageContainer {
-    margin: 20px 0;
-}
 
 
 
@@ -166,9 +178,11 @@ footer {
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
- .form-group input[type="text"] {
- animation: pulsing 0.3 ease infinite;
+
+.form-group input[type="text"] {
+    animation: pulsing 0.3 ease infinite;
 }
+
 footer a {
     color: var(--text-color);
 }
@@ -198,34 +212,42 @@ footer a:hover {
 
 
 #tutorial {
-text-align: left;
+    text-align: left;
 }
 
 /* SVG icon styling */
 #addCourseButton svg {
-    width: 40px; /* Increase SVG width */
-    height: 40px; /* Increase SVG height */
-    fill: white; /* SVG icon color */
-    vertical-align: middle; /* Align icon with any potential text or baseline */
+    width: 40px;
+    /* Increase SVG width */
+    height: 40px;
+    /* Increase SVG height */
+    fill: white;
+    /* SVG icon color */
+    vertical-align: middle;
+    /* Align icon with any potential text or baseline */
 }
 
 /* Accessibility: Ensure the button has a focus style for keyboard navigation */
 #addCourseButton svg:focus {
-    outline: 2px solid #fff; /* White outline */
+    outline: 2px solid #fff;
+    /* White outline */
     outline-offset: 2px;
 }
 
 input[type="range"] {
     /* Base slider styles */
-    cursor: pointer; /* Change cursor to indicate it's draggable */
-    transition: transform 0.2s ease; /* Smooth transition for size changes */
+    cursor: pointer;
+    /* Change cursor to indicate it's draggable */
+    transition: transform 0.2s ease;
+    /* Smooth transition for size changes */
 }
 
-#scoreValue, .number {
+#scoreValue,
+.number {
     font-size: 1.5em;
     font-weight: bold;
     margin: 0 10px;
- text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .modal {
@@ -237,8 +259,8 @@ input[type="range"] {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
 }
 
@@ -249,7 +271,7 @@ input[type="range"] {
     border: 1px solid #888;
     width: 80%;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .close {
@@ -268,35 +290,49 @@ input[type="range"] {
 
 footer a:hover {
     text-decoration: underline;
-    color : var(--hover-color);
+    color: var(--hover-color);
 }
 
 
 
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.7); }
-        70% { box-shadow: 0 0 0 10px rgba(0, 123, 255, 0.6); }
-        100% { box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.8); }
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.7);
     }
 
-    .pulsing {
-        animation: pulse 1.5s infinite;
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 123, 255, 0.6);
     }
+
+    100% {
+        box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.8);
+    }
+}
+
+.pulsing {
+    animation: pulse 1.5s infinite;
+}
+
 @media (max-width: 600px) {
 
     h1 {
         font-size: 1.5em;
     }
+
     input[type="range"]:active {
-    /* Increase size when active */
-    transform: scale(1.1);
-    /* pulse animation */
-}
- .form-group input[type="range"]:active {
+        /* Increase size when active */
+        transform: scale(1.1);
+        /* pulse animation */
+    }
+
+    .form-group input[type="range"]:active {
         /* Increase size when active */
         transform: scale(1.1);
     }
-    #loadCoursesText, #saveCoursesText, #tutorialText {
+
+    #loadCoursesText,
+    #saveCoursesText,
+    #tutorialText {
         display: none;
     }
 
@@ -307,6 +343,7 @@ footer a:hover {
         padding: 0;
         background: var(--primary-color);
     }
+
     .header-buttons button {
         padding: 0;
     }
@@ -327,6 +364,7 @@ footer a:hover {
         margin: 0 0.5em;
 
     }
+
     .form-group {
         margin: 0.5em;
         padding-top: 1em;
@@ -335,83 +373,80 @@ footer a:hover {
 
     .form-group {
         display: flex;
-        flex-direction: column; /* Stack children vertically */
-        align-items: center; /* Center children horizontally */
-        justify-content: center; /* Center children vertically if needed */
+        flex-direction: column;
+        /* Stack children vertically */
+        align-items: center;
+        /* Center children horizontally */
+        justify-content: center;
+        /* Center children vertically if needed */
     }
 
     .form-group input[type="range"] {
-        width: 80%; /* Adjust width as needed */
+        width: 80%;
+        /* Adjust width as needed */
         /* margin: 0 auto; is not necessary with flexbox centering */
         /* Base slider styles */
-        cursor: pointer; /* Change cursor to indicate it's draggable */
-        transition: transform 0.2s ease; /* Smooth transition for size changes */
+        cursor: pointer;
+        /* Change cursor to indicate it's draggable */
+        transition: transform 0.2s ease;
+        /* Smooth transition for size changes */
     }
 
     .form-group {
-    display: none;
+        display: none;
     }
 
 
 }
+
 /*
 .form-group:not(body > div.container > div:nth-child(2)) {
     display: none;
 } */
 
-    .form-group {
+.form-group {
     display: none;
-    }
-
-    .form-group-Name {
-        margin: 20px 0;
-        font-family: 'Comic Sans MS', cursive, sans-serif; /* Playful font */
-        color: #333; /* Readable text color */
-    }
-
-    .form-group-Name label {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: #5D3B99; /* Fun purple */
-    }
-
-.form-group-Name input[type="text"] {
-    width: 90%;
-    padding: 8px; /* Reduced padding */
-    border: 2px solid #5D3B99; /* Fun purple border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 14px; /* Smaller font size */
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions */
 }
 
-    .form-group-Name input[type="text"]:focus {
-        border-color: #F39C12; /* Bright focus color */
-        box-shadow: 0 0 8px rgba(243, 156, 18, 0.6); /* Soft glow effect */
-        outline: none; /* Removes default focus outline */
-    }
-
-    .form-group-name {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        background-color: #f4f4f4;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        padding: 20px;
-        margin: 20px;
-        }
 
 
-        h2 {
-    font-family: 'Arial', sans-serif; /* Modern, readable font */
-    color: #1f1f1f; /* A calming, academic blue */
-    background-color: #E9F7FE; /* Light blue background for emphasis */
-    padding: 10px 20px; /* Adequate padding for visual comfort */
-    border-radius: 8px; /* Soft rounded corners */
-    border-left: 5px solid #2E86C1; /* A darker blue accent on the left */
-    margin: 20px 0; /* Ensure it stands out by adding some margin */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    text-align: center; /* Center the text for emphasis */
+h2 {
+    font-family: 'Arial', sans-serif;
+    /* Modern, readable font */
+    color: #1f1f1f;
+    /* A calming, academic blue */
+    background-color: #E9F7FE;
+    /* Light blue background for emphasis */
+    padding: 10px 20px;
+    /* Adequate padding for visual comfort */
+    border-radius: 8px;
+    /* Soft rounded corners */
+    border-left: 5px solid #2E86C1;
+    /* A darker blue accent on the left */
+    margin: 20px 0;
+    /* Ensure it stands out by adding some margin */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    text-align: center;
+    /* Center the text for emphasis */
+}
+
+.form-group-Name{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    font-size: 16px;
+    max-width: 400px;
+}
+
+.form-group-Name input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin: 0 10px;
+    box-sizing: border-box;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
 }

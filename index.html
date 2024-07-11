@@ -145,11 +145,41 @@
         <div id="averageContainer">
             <h2>Average GPA: <span id="averageGPA">0.00</span></h2>
         </div>
-        <div class="form-group-Name">
-            <label for="courseName">Course Name:</label>
+
+
+
+
+        <div class="form-group">
+            <label for="score">Score:<span id="scoreValue">50</span></label>
+            <input type="range" id="score" min="0" max="100" step="1" oninput="updateScoreValue(this.value)">
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="points">Points: <span id="pointsValue">5</span></label>
+            <input type="range" id="points" min="0" max="12" step="1" oninput="updatePointsValue(this.value)">
+
+        </div>
+
+        <div id="courseListContainer">
+            <table id="courseTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Points</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="courseList"></tbody>
+            </table>
+        </div>
+    </div>
+            <div class="form-group-Name">
             <input type="text" id="courseName">
         </div>
-        <div class="spinnersContainer">
+    <div class="spinnersContainer">
             <div class="scoreContainer">
                 <h3>Score</h3>
                 <div class="cell">
@@ -206,37 +236,6 @@
         </div>
         </div>
 
-
-        <div class="form-group">
-            <label for="score">Score:<span id="scoreValue">50</span></label>
-            <input type="range" id="score" min="0" max="100" step="1" oninput="updateScoreValue(this.value)">
-        </div>
-
-
-
-        <div class="form-group">
-            <label for="points">Points: <span id="pointsValue">5</span></label>
-            <input type="range" id="points" min="0" max="12" step="1" oninput="updatePointsValue(this.value)">
-
-        </div>
-
-        <div id="courseListContainer">
-            <table id="courseTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Score</th>
-                        <th>Points</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="courseList"></tbody>
-            </table>
-        </div>
-    </div>
-    <footer>
-        <p>Visit my website: <a href="https://dorpascal.com" target="_blank">dorpascal.com</a></p>
-    </footer>
     <div id="tutorialPopup" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeTutorial()">&times;</span>
@@ -248,6 +247,9 @@
             </div>
         </div>
     </div>
+     <footer>
+        <p>Visit my website: <a href="https://dorpascal.com" target="_blank">dorpascal.com</a></p>
+    </footer>
     <script src="script.js"></script>
     <script src="spinner.js"></script>
 </body>

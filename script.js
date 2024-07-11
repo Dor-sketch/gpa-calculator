@@ -33,7 +33,6 @@ function addCourse() {
 
     if (editIndex >= 0) {
         courses[editIndex] = { name, score, points };
-        Swal.fire('Success', 'Course updated successfully', 'success');
         editIndex = -1;
          document.getElementById('addCourseButton').innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
@@ -44,7 +43,6 @@ function addCourse() {
     document.querySelector('body > div.container > div.spinnersContainer > div.button-group > h3').textContent = 'Add';
     } else {
         courses.push({ name, score, points });
-        Swal.fire('Success', 'Course added successfully', 'success');
     }
 
     document.getElementById('courseName').value = '';
@@ -148,7 +146,6 @@ function editCourse(index) {
 
 function deleteCourse(index) {
     courses.splice(index, 1);
-    Swal.fire('Success', 'Course deleted successfully', 'success');
     updateCourseList();
 }
 
@@ -191,8 +188,15 @@ function updateCourseList() {
         row.style.borderLeftColor = `hsl(${course.score}, 100%, 50%)`;
         row.onclick = () => highlightRow(index);
         courseList.appendChild(row);
+            const average = parseFloat(document.getElementById('averageGPA').textContent);
+    const averageContainer = document.getElementById('averageContainer');
+
+    // Select the h2 element within #averageContainer and apply a background color
+    const h2Element = averageContainer.querySelector('h2');
+    if (h2Element) { // Check if the h2 element exists
+        h2Element.style.backgroundColor = getShadeBasedOnScore(average);
+    }
     });
-    gsap.fromTo("#courseList tr", { x: -100 }, { x: 0, stagger: 0.1 });
     updateAverageGPA();
 }
 
@@ -237,12 +241,17 @@ document.addEventListener('DOMContentLoaded', () => {
             sortTableByColumn(this.cellIndex);
         });
     });
+
+
 });
 
 function getShadeBasedOnScore(score) {
     // Example: Return a shade of green for high scores, and red for low scores
-    if (score > 80) return '#ccffcc'; // Light green
+    if (score > 90) return '#ccffcc'; // Light green
+    else if (score > 80) return '#ccffcc'; // Light green
     else if (score > 60) return '#ffffcc'; // Light yellow
+    else if (score > 40) return '#ffcccc'; // Light red
+    else if (score > 20) return '#ffcccc'; // Light red
     else return '#ffcccc'; // Light red
 }
 
@@ -345,10 +354,4 @@ function addShadesBasedOnScore() {
         const score = parseInt(row.querySelectorAll('td')[1].textContent, 10); // Assuming Score is the second column
         row.style.backgroundColor = getShadeBasedOnScore(score);
     });
-}
-
-function getShadeBasedOnScore(score) {
-    if (score >= 90) return '#ccffcc'; // Light green for high scores
-    else if (score >= 70) return '#ffffcc'; // Light yellow for medium scores
-    else return '#ffcccc'; // Light red for low scores
 }
