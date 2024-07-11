@@ -10,7 +10,7 @@
         gtag('config', 'G-T7HFKFX0PR');
     </script>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Interactive GPA Calculator</title>
     <meta name="description"
         content="Interactive GPA calculator that allows you to add, edit, and calculate your GPA based on course scores and credit points.">
@@ -47,7 +47,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="spinner.css">
-    <link rel="stylesheet" href="tables.css"    >
+    <link rel="stylesheet" href="tables.css">
 </head>
 
 <body>
@@ -175,67 +175,61 @@
                 <tbody id="courseList"></tbody>
             </table>
         </div>
-            </div>
+    </div>
 
     <div class="spinnersContainer">
-            <div class="scoreContainer">
-                <h3>Score</h3>
-                <div class="cell">
-                    <div class="spinner" id="scoreSpinner">
-                        <div class="wheel" style="transform: translateY(0px);">
-                            <div id="numbers">
-                                <script>
-                                    const container = document.getElementById('numbers');
-                                    for (let i = 0; i <= 100; i++) {
-                                        const div = document.createElement('div');
-                                        div.className = 'number';
-                                        div.textContent = i;
-                                        const hue = (i * 1.2); // Scale factor to map 0-100 to 0-120 degrees
-                                        div.style.color = `hsl(${hue}, 100%, 50%)`; // Apply HSL color based on number
-                                        container.appendChild(div);
-                                    }
-                                </script>
-                            </div>
+        <div class="scoreContainer">
+            <h3>Score</h3>
+            <div class="cell">
+                <div class="spinner" id="scoreSpinner">
+                    <div class="wheel" style="transform: translateY(0px);">
+                        <div id="numbers">
+                            <script>
+                                const container = document.getElementById('numbers');
+                                for (let i = 0; i <= 100; i++) {
+                                    const div = document.createElement('div');
+                                    div.className = 'number';
+                                    div.textContent = i;
+                                    const hue = (i * 1.2); // Scale factor to map 0-100 to 0-120 degrees
+                                    div.style.color = `hsl(${hue}, 100%, 50%)`; // Apply HSL color based on number
+                                    container.appendChild(div);
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="pointsContainer">
-                <h3>Points</h3>
-                <div class="cellPoints">
-                    <div class="pointsSpinner" id="pointsSpinner">
-                        <div class="pointsWheel" style="transform: translateY(0px);">
-                            <div id="pointsNumbers">
-                                <script>
-                                    const pointsContainer = document.getElementById('pointsNumbers');
-                                    for (let i = 0; i <= 12; i++) {
-                                        const div = document.createElement('div');
-                                        div.className = 'number';
-                                        div.textContent = i;
-                                        const hue = (i * 1.2); // Scale factor to map 0-100 to 0-120 degrees
-                                        div.style.color = `hsl(${hue}, 100%, 50%)`; // Apply HSL color based on number
-                                        pointsContainer.appendChild(div);
-                                    }
-                                </script>
-                            </div>
+        </div>
+        <div class="pointsContainer">
+            <h3>Points</h3>
+            <div class="cellPoints">
+                <div class="pointsSpinner" id="pointsSpinner">
+                    <div class="pointsWheel" style="transform: translateY(0px);">
+                        <div id="pointsNumbers">
+                            <script>
+                                const pointsContainer = document.getElementById('pointsNumbers');
+                                for (let i = 0; i <= 12; i++) {
+                                    const div = document.createElement('div');
+                                    div.className = 'number';
+                                    div.textContent = i;
+                                    const hue = (i * 1.2); // Scale factor to map 0-100 to 0-120 degrees
+                                    div.style.color = `hsl(${hue}, 100%, 50%)`; // Apply HSL color based on number
+                                    pointsContainer.appendChild(div);
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
             </div>
-                    <div class="button-group">
-                    <h3>Add</h3>
-            <button id="addCourseButton" onclick="addCourse()" title="Add Course">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-                    <path
-                        d="M 25 2 C 12.309295 2 2 12.309295 2 25 C 2 37.690705 12.309295 48 25 48 C 37.690705 48 48 37.690705 48 25 C 48 12.309295 37.690705 2 25 2 z M 25 4 C 36.609824 4 46 13.390176 46 25 C 46 36.609824 36.609824 46 25 46 C 13.390176 46 4 36.609824 4 25 C 4 13.390176 13.390176 4 25 4 z M 24.984375 16.986328 A 1.0001 1.0001 0 0 0 24 18 L 24 24 L 18 24 A 1.0001 1.0001 0 1 0 18 26 L 24 26 L 24 32 A 1.0001 1.0001 0 1 0 26 32 L 26 26 L 32 26 A 1.0001 1.0001 0 1 0 32 24 L 26 24 L 26 18 A 1.0001 1.0001 0 0 0 24.984375 16.986328 z">
-                    </path>
-                </svg>
-            </button>
         </div>
+        <div class="button-group">
+        <h3>Add</h3>
+            <button onclick="addCourse()" aria-label="Add Course" id="addCourseButton">+</button>
         </div>
-            <div class="form-group-Name">
-            <input type="text" id="courseName">
-        </div>
+    </div>
+    <div class="form-group-Name">
+        <input type="text" id="courseName">
+    </div>
 
     <div id="tutorialPopup" class="modal">
         <div class="modal-content">
@@ -248,7 +242,7 @@
             </div>
         </div>
     </div>
-     <footer>
+    <footer>
         <p>Visit my website: <a href="https://dorpascal.com" target="_blank">dorpascal.com</a></p>
     </footer>
     <script src="script.js"></script>

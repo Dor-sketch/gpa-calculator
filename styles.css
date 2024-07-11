@@ -191,48 +191,12 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Base button styling */
-/* Adjusted button styling for increased size */
-#addCourseButton {
-    display: inline-block;
-    padding: 0.3em 3em;
-    border: none;
-    background-color: #333333;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: background-color 0.3s, transform 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-
 
 #tutorial {
     text-align: left;
 }
 
-/* SVG icon styling */
-#addCourseButton svg {
-    width: 40px;
-    /* Increase SVG width */
-    height: 40px;
-    /* Increase SVG height */
-    fill: white;
-    /* SVG icon color */
-    vertical-align: middle;
-    /* Align icon with any potential text or baseline */
-}
 
-/* Accessibility: Ensure the button has a focus style for keyboard navigation */
-#addCourseButton svg:focus {
-    outline: 2px solid #fff;
-    /* White outline */
-    outline-offset: 2px;
-}
 
 input[type="range"] {
     /* Base slider styles */
