@@ -361,7 +361,7 @@ document.querySelector('.courseListContainer').addEventListener('touchmove', fun
 
 let lastTapTime = 0;
 
-document.getElementById('addCourseButton').addEventListener('touchend', function(e) {
+function preventDoubleTapZoom(e) {
     const currentTime = new Date().getTime();
     const tapLength = currentTime - lastTapTime;
     if (tapLength < 300 && tapLength > 0) {
@@ -369,4 +369,12 @@ document.getElementById('addCourseButton').addEventListener('touchend', function
         e.preventDefault();
     }
     lastTapTime = currentTime;
+}
+
+// Apply the event listener to the button
+document.getElementById('addCourseButton').addEventListener('touchend', preventDoubleTapZoom);
+
+// Apply the event listener to all child elements of the button, including SVGs
+Array.from(document.getElementById('addCourseButton').querySelectorAll('*')).forEach(element => {
+    element.addEventListener('touchend', preventDoubleTapZoom);
 });
