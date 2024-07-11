@@ -200,7 +200,9 @@ footer {
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
-
+ .form-group input[type="text"] {
+ animation: pulsing 0.3 ease infinite;
+}
 footer a {
     color: white;
     text-decoration: none;
@@ -245,12 +247,37 @@ text-align: left;
     outline-offset: 2px;
 }
 
+input[type="range"] {
+    /* Base slider styles */
+    cursor: pointer; /* Change cursor to indicate it's draggable */
+    transition: transform 0.2s ease; /* Smooth transition for size changes */
+}
+
+
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(0, 123, 255, 0.6); }
+        100% { box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.8); }
+    }
+
+    .pulsing {
+        animation: pulse 1.5s infinite;
+    }
 @media (max-width: 600px) {
 
     h1 {
         font-size: 1.5em;
     }
-
+    input[type="range"]:active {
+    /* Increase size when active */
+    transform: scale(1.1);
+    /* pulse animation */
+}
+ .form-group input[type="range"]:active {
+        /* Increase size when active */
+        transform: scale(1.1);
+    }
     #loadCoursesText, #saveCoursesText {
         display: none;
     }
@@ -284,6 +311,7 @@ text-align: left;
     }
     .form-group {
         margin: 0.5em;
+        padding-top: 1em;
 
     }
 
@@ -297,6 +325,18 @@ text-align: left;
     .form-group input[type="range"] {
         width: 80%; /* Adjust width as needed */
         /* margin: 0 auto; is not necessary with flexbox centering */
+        /* Base slider styles */
+        cursor: pointer; /* Change cursor to indicate it's draggable */
+        transition: transform 0.2s ease; /* Smooth transition for size changes */
     }
 
+
+
+}
+
+#scoreValue {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 10px;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }

@@ -173,8 +173,8 @@ function addNewCourse() {
 document.addEventListener('DOMContentLoaded', updateCourseList);
 
 document.addEventListener('DOMContentLoaded', function() {
-    var slider = document.getElementById('points');
-    var output = document.getElementById('pointsValue');
+    var slider = document.getElementById('score');
+    var output = document.getElementById('scoreValue');
 
     slider.addEventListener('input', function() {
         output.innerHTML = this.value;
