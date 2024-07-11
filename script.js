@@ -184,3 +184,18 @@ document.addEventListener('DOMContentLoaded', function() {
         output.style.color = `rgb(${255 - colorIntensity}, ${colorIntensity}, 0)`;
     });
 });
+
+function showTutorial() {
+    document.getElementById("tutorialPopup").style.display = "block";
+}
+
+function closeTutorial() {
+    document.getElementById("tutorialPopup").style.display = "none";
+}
+
+// Close the modal when the user clicks anywhere outside of the modal
+window.onclick = function(event) {
+    if (event.target == document.getElementById("tutorialPopup")) {
+        document.getElementById("tutorialPopup").style.display = "none";
+    }
+}
