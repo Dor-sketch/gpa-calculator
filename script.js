@@ -352,3 +352,93 @@ function getShadeBasedOnScore(score) {
     else if (score >= 70) return '#ffffcc'; // Light yellow for medium scores
     else return '#ffcccc'; // Light red for low scores
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateCourseList();
+
+    // Swipe to delete functionality
+    let startX;
+    const table = document.getElementById('courseTable');
+    table.addEventListener('touchstart', (event) => {
+        if (event.target.tagName === 'TD') {
+            startX = event.touches[0].clientX;
+        }
+    });
+
+
+    const headers = document.querySelectorAll('#courseTable th');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            headers.forEach(h => h.classList.remove('active'));
+            header.classList.add('active');
+        });
+    });
+
+    table.addEventListener('touchend', (event) => {
+        if (event.target.tagName === 'TD') {
+            const endX = event.changedTouches[0].clientX;
+            const deltaX = endX - startX;
+
+            if (Math.abs(deltaX) > 50) { // Swipe threshold
+                const row = event.target.parentNode;
+                if (deltaX < 0) { // Swipe left to delete
+                    row.style.transform = 'translateX(-100%)';
+                    setTimeout(() => {
+                        const rowIndex = Array.from(row.parentNode.children).indexOf(row);
+                        deleteCourse(rowIndex);
+                    }, 300); // Delay to allow swipe animation
+                } else { // Swipe right to reset
+                    row.style.transform = 'translateX(0)';
+                }
+            }
+        }
+    });
+});
+
+
+function highlightRow(index) {
+    const rows = document.querySelectorAll('#courseList tr');
+    rows.forEach(row => row.classList.remove('highlighted'));
+    if (rows[index]) {
+        rows[index].classList.add('highlighted');
+    }
+}
+
+function makeCellEditable(cell, index, key) {
+    cell.contentEditable = true;
+    cell.onblur = function () {
+        const newValue = cell.textContent;
+        if (key === 'name') {
+            courses[index].name = newValue;
+        } else if (key === 'score') {
+            courses[index].score = parseFloat(newValue);
+        } else if (key === 'points') {
+            courses[index].points = parseFloat(newValue);
+        }
+        updateAverageGPA();
+        updateCourseList();
+    };
+}
+
+function updateCourseList() {
+    const courseList = document.getElementById('courseList');
+    courseList.innerHTML = '';
+    courses.forEach((course, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="editable" onclick="makeCellEditable(this, ${index}, 'name')">${course.name}</td>
+            <td class="editable" onclick="makeCellEditable(this, ${index}, 'score')">${course.score}</td>
+            <td class="editable" onclick="makeCellEditable(this, ${index}, 'points')">${course.points}</td>
+            <td>
+                <span class="edit" onclick="editCourse(${index})">Edit</span>
+                <span class="delete" onclick="deleteCourse(${index})">x</span>
+            </td>
+        `;
+        row.style.borderLeftColor = `hsl(${course.score}, 100%, 50%)`;
+        row.onclick = () => highlightRow(index);
+        courseList.appendChild(row);
+    });
+    gsap.fromTo("#courseList tr", { x: -100 }, { x: 0, stagger: 0.1 });
+    updateAverageGPA();
+}
