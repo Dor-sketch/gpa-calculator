@@ -1,7 +1,7 @@
 #courseTable {
     width: 100%;
     border-collapse: separate; /* Adjusted for border-spacing */
-    margin: 20px 0;
+    margin: 2px 0;
     border: 1px solid #607d8b;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -44,14 +44,19 @@
     #courseTable th, #courseTable td {
         text-align: left; /* Adjust text alignment for mobile */
     }
-    #courseTable th {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+    #courseTable thead {
+        display: none; /* Hide table headers */
+    }
+    #courseTable tr {
+        margin-bottom: 10px; /* Add space between rows */
+        border: 1px solid #607d8b; /* Add border to rows */
+        border-radius: 5px; /* Add border radius to rows */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow to rows */
     }
     #courseTable td {
         position: relative;
         padding-left: 50%; /* Make space for the content to be displayed linearly */
+        box-sizing: border-box;
     }
     #courseTable td:before {
         /* Use the data-label attribute from the th as content */
@@ -90,7 +95,7 @@
 }
 
 #courseListContainer {
-background:#7e7e7e;
+    background: #7e7e7e;
     width: 100%;
     height: 300px; /* Fixed height */
     border-collapse: separate; /* Adjusted for border-spacing */
