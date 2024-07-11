@@ -358,3 +358,15 @@ function addShadesBasedOnScore() {
 document.querySelector('.courseListContainer').addEventListener('touchmove', function(e) {
     e.stopPropagation(); // Prevents the event from bubbling up to the body
 }, false);
+
+let lastTapTime = 0;
+
+document.getElementById('addCourseButton').addEventListener('touchend', function(e) {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTapTime;
+    if (tapLength < 300 && tapLength > 0) {
+        // Prevent double-tap zoom
+        e.preventDefault();
+    }
+    lastTapTime = currentTime;
+});
