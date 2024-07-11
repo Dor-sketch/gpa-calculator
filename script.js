@@ -378,3 +378,13 @@ document.getElementById('addCourseButton').addEventListener('touchend', preventD
 Array.from(document.getElementById('addCourseButton').querySelectorAll('*')).forEach(element => {
     element.addEventListener('touchend', preventDoubleTapZoom);
 });
+document.addEventListener('touchend', preventDoubleTapZoom, false);
+
+function preventDoubleTapZoom(e) {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTapTime;
+    if (tapLength < 300 && tapLength > 0) {
+        e.preventDefault(); // Prevent double-tap zoom
+    }
+    lastTapTime = currentTime;
+}
