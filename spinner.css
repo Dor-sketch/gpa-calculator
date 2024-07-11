@@ -115,9 +115,3 @@ overflow-x: hidden;
 overflow-y: scroll;
 }
 
-@media (orientation: portrait) {
-    body {
-        overflow-x: hidden;
-        overflow-y: hidden;
-    }
-}

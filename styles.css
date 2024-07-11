@@ -1,14 +1,16 @@
 :root {
-    --primary-color: #4A90E2; /* Adjusted for a more vibrant primary color */
-    --text-color: #333333; /* Darker for better readability */
-    --hover-color: #007AFF; /* A slightly different blue for hover states */
-    --secondary-color: #205493; /* Darker secondary color for contrast */
-    --primary-color-light: #B3D4FC; /* Lighter primary color for backgrounds */
-    --text-color-light: #FAFAFA; /* Lighter text, for dark backgrounds */
-    --hover-color-light: #005ECF; /* Light hover color for interactive elements */
-    --secondary-color-light: #2E6CA4; /* A lighter shade of the secondary color */
-    --primary-color-dark: #3E70A4; /* Darkened primary color for depth */
+    --primary-color: #4A90E2; /* Vibrant blue */
+    --text-color: #0c0c0c; /* Dark text for readability */
+    --hover-color: #E0E0E0; /* Light gray for hover states */
+    --secondary-color: #E8EAF6; /* Light gray for secondary color */
+    --primary-color-light: #F1F8FF; /* Very light blue for backgrounds */
+    --text-color-light: #FFFFFF; /* White text for dark backgrounds */
+    --hover-color-light: #cfe5f4; /* Light blue for hover color */
+    --secondary-color-light: #CFD8DC; /* Light gray for alternating rows */
+    --primary-color-dark: #3E70A4; /* Darkened primary color */
 }
+
+
 
 body {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
