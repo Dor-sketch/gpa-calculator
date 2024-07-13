@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7HFKFX0PR"></script>
@@ -14,7 +14,7 @@
     <title>Interactive GPA Calculator</title>
     <meta name="description"
         content="Interactive GPA calculator that allows you to add, edit, and calculate your GPA based on course scores and credit points.">
-    <meta name="keywords" content="GPA calculator, interactive, course scores, credit points">
+    <meta name="keywords" content="GPA calculator, interactive, course scores, credit points, calculate GPA, average">
     <meta name="author" content="Dor Pascal">
     <link rel="icon" href="favicon.png" type="image/png">
     <meta name="robots" content="index, follow">
@@ -29,25 +29,51 @@
     <meta property="og:description"
         content="Interactive GPA calculator that allows you to add, edit, and calculate your GPA based on course scores and credit points.">
     <meta property="og:image" content="https://dorpascal.com/gpa-calculator/preview.png">
-    <meta property="og:url" content="https://dorpascal.com/gpa-calculator/">
+    <meta property="og:url" content="https://dorpascal.com/gpa-calculator">
     <meta property="og:site_name" content="Interactive GPA Calculator">
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta name="author" content="Dor Pascal">
     <meta property="og:published_time" content="2024-07-11">
-    <meta property="og:modified_time" content="2024-07-11">
-    <meta property="og:updated_time" content="2024-07-11">
-    <link rel="canonical" href="https://dorpascal.com/gpa-calculator/">
+    <meta property="og:modified_time" content="2024-07-12">
+    <meta property="og:updated_time" content="2024-07-12">
+    <link rel="canonical" href="https://dorpascal.com/gpa-calculator">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="spinner.css">
-    <link rel="stylesheet" href="tables.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        .editable:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .highlighted {
+            background-color: #d0ffd0;
+        }
+
+        .edit,
+        .delete {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -145,23 +171,14 @@
         <div id="averageContainer">
             <h2>Average GPA: <span id="averageGPA">0.00</span></h2>
         </div>
-
-
-
-
         <div class="form-group">
             <label for="score">Score:<span id="scoreValue">50</span></label>
             <input type="range" id="score" min="0" max="100" step="1" oninput="updateScoreValue(this.value)">
         </div>
-
-
-
         <div class="form-group">
             <label for="points">Points: <span id="pointsValue">5</span></label>
             <input type="range" id="points" min="0" max="12" step="1" oninput="updatePointsValue(this.value)">
-
         </div>
-
         <div id="courseListContainer">
             <table id="courseTable">
                 <thead>
@@ -176,61 +193,6 @@
             </table>
         </div>
     </div>
-
-    <div class="spinnersContainer">
-        <div class="scoreContainer">
-            <h3>Score</h3>
-            <div class="cell">
-                <div class="spinner" id="scoreSpinner">
-                    <div class="wheel" style="transform: translateY(0px);">
-                        <div id="numbers">
-                            <script>
-                                const container = document.getElementById('numbers');
-                                for (let i = 0; i <= 100; i++) {
-                                    const div = document.createElement('div');
-                                    div.className = 'number';
-                                    div.textContent = i;
-                                    const hue = (i * 1.2); // Scale factor to map 0-100 to 0-120 degrees
-                                    div.style.color = `hsl(${hue}, 100%, 50%)`; // Apply HSL color based on number
-                                    container.appendChild(div);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="pointsContainer">
-            <h3>Points</h3>
-            <div class="cellPoints">
-                <div class="pointsSpinner" id="pointsSpinner">
-                    <div class="pointsWheel" style="transform: translateY(0px);">
-                        <div id="pointsNumbers">
-                            <script>
-                                const pointsContainer = document.getElementById('pointsNumbers');
-                                for (let i = 0; i <= 12; i++) {
-                                    const div = document.createElement('div');
-                                    div.className = 'number';
-                                    div.textContent = i;
-                                    const hue = (i * 1.2); // Scale factor to map 0-100 to 0-120 degrees
-                                    div.style.color = `hsl(${hue}, 100%, 50%)`; // Apply HSL color based on number
-                                    pointsContainer.appendChild(div);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="button-group">
-        <h3>Add</h3>
-            <button onclick="addCourse()" aria-label="Add Course" id="addCourseButton">+</button>
-        </div>
-    </div>
-    <div class="form-group-Name">
-        <input type="text" id="courseName">
-    </div>
-
     <div id="tutorialPopup" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeTutorial()">&times;</span>
@@ -245,8 +207,7 @@
     <footer>
         <p>Visit my website: <a href="https://dorpascal.com" target="_blank">dorpascal.com</a></p>
     </footer>
-    <script src="script.js"></script>
-    <script src="spinner.js"></script>
+    <script src="courses.js"></script>
 </body>
 
 </html>
