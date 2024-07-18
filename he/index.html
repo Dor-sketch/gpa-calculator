@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7HFKFX0PR"></script>
     <script>
@@ -14,7 +14,8 @@
     <title>מחשבון ממוצע ציונים</title>
     <meta name="description"
         content="מחשבון ממוצע ציונים לסטודנטים המאפשר להוסיף, לערוך ולחשב את הממוצע המשוקלל שלך באוניברסיטה על בסיס ציוני הקורסים ונקודות הזכות.">
-    <meta name="keywords" content="מחשבון ממוצע ציונים, אינטראקטיבי, ציוני קורסים, נקודות קרדיט, לחשב ממוצע, ממוצע, אוניברסיטת בן גוריון, אוניברסיטת תל אביב, העברית, הפתוחה, בר אילן, הטכניון, המכללה למנהל, המכללה למנהל ראשון לציון״">
+    <meta name="keywords"
+        content="מחשבון ממוצע ציונים, אינטראקטיבי, ציוני קורסים, נקודות קרדיט, לחשב ממוצע, ממוצע, אוניברסיטת בן גוריון, אוניברסיטת תל אביב, העברית, הפתוחה, בר אילן, הטכניון, המכללה למנהל, המכללה למנהל ראשון לציון״">
     <meta name="author" content="דור פסקל">
     <link rel="icon" href="favicon.png" type="image/png">
     <meta name="robots" content="index, follow">
@@ -49,51 +50,54 @@
             width: 100%;
             border-collapse: collapse;
         }
-css
-Copy code
-    th,
-    td {
-        border: 1px solid #ddd;
-    }
 
-    th {
-        background-color: #f2f2f2;
-        text-align: center;
-    }
+        css Copy code th,
+        td {
+            border: 1px solid #ddd;
+        }
 
-    .editable:hover {
-        background-color: #f0f0f0;
-        cursor: pointer;
-    }
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
 
-    .highlighted {
-        background-color: #d0ffd0;
-    }
+        .editable:hover {
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
 
-    .edit,
-    .delete {
-        cursor: pointer;
-    }
+        .highlighted {
+            background-color: #d0ffd0;
+        }
 
-    #tutorial {
-    text-align: right;
-    }
+        .edit,
+        .delete {
+            cursor: pointer;
+        }
 
-    .close {
-    float: left;
-    cursor: pointer;
-    }
+        #tutorial {
+            text-align: right;
+        }
 
-    h1 {
-    margin: 5px;
-    }
+        .close {
+            float: left;
+            cursor: pointer;
+        }
 
-    .header-buttons {
-    display: flex;
-    gap: 1px;
-}
-</style>
+        @media (max-width: 600px) {
+
+            h1 {
+                margin: 5px;
+            }
+
+            .header-buttons {
+                display: flex;
+                gap: 1px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <h1>חישוב ממוצע ציונים</h1>
@@ -215,28 +219,31 @@ Copy code
         <div class="modal-content">
             <span class="close" onclick="closeTutorial()">&times;</span>
             <div id="tutorial">
-            <p>חשב את ממוצע נקודות הזכות שלך בקלות בעזרת מחשבון ממוצע ציונים. הוראות שימוש:</p>
-            <ul>
-            <li>הוספת קורס: לחץ על הכפתור הירוק בתחתית הטבלה. הקורס החדש יקבל את ערך הממוצע הנוכחי.</li>
-            <li>מחיקת קורס: לחץ על כפתור המחיקה בסוף כל שורה ופרטי הקורס יוסרו מהממוצע.</li>
-            <li>עריכה: לחצה על תא בטבלה לשינוי הערכים המופיעים בו - שם הקורס, הציון או מספר נקודות הזכות. הממוצע המשוקלל יתעדכן באופן אוטותמי בעת סיום העריכה.</li>
-            </ul>
-            <p>אפשרויות שמירה והעלאת קובץ קיים:</p>
-            <ul>
-            <li>לחץ על כפתור העלאה כדי להעלות את פירוט הקורסים שלך לחישוב ולעריכה. מחשבון ממוצע ציונים תומך בקבצי CSV בלבד.</li>
-            <li>שמירת קורסים: לחץ על כפתור הייצוא כדי לשמור את פירוט הקורסים שלך בקובץ CSV.</li>
-            </ul>
+                <p>חשב את ממוצע נקודות הזכות שלך בקלות בעזרת מחשבון ממוצע ציונים. הוראות שימוש:</p>
+                <ul>
+                    <li>הוספת קורס: לחץ על הכפתור הירוק בתחתית הטבלה. הקורס החדש יקבל את ערך הממוצע הנוכחי.</li>
+                    <li>מחיקת קורס: לחץ על כפתור המחיקה בסוף כל שורה ופרטי הקורס יוסרו מהממוצע.</li>
+                    <li>עריכה: לחצה על תא בטבלה לשינוי הערכים המופיעים בו - שם הקורס, הציון או מספר נקודות הזכות. הממוצע
+                        המשוקלל יתעדכן באופן אוטותמי בעת סיום העריכה.</li>
+                </ul>
+                <p>אפשרויות שמירה והעלאת קובץ קיים:</p>
+                <ul>
+                    <li>לחץ על כפתור העלאה כדי להעלות את פירוט הקורסים שלך לחישוב ולעריכה. מחשבון ממוצע ציונים תומך
+                        בקבצי CSV בלבד.</li>
+                    <li>שמירת קורסים: לחץ על כפתור הייצוא כדי לשמור את פירוט הקורסים שלך בקובץ CSV.</li>
+                </ul>
             </div>
         </div>
     </div>
     <footer>
-    <nav>
-        <a href="https://dorpascal.com/about" target="_blank">אודות</a>
-        <a href="https://dorpascal.com/contact" target="_blank">צור קשר</a>
-        <a href="https://dorpascal.com" target="_blank">dorpascal.com</a>
-        <a href="https://dorpascal.com/gpa-calculator" target="_blank">English</a>
-    </nav>
+        <nav>
+            <a href="https://dorpascal.com/about" target="_blank">אודות</a>
+            <a href="https://dorpascal.com/contact" target="_blank">צור קשר</a>
+            <a href="https://dorpascal.com" target="_blank">dorpascal.com</a>
+            <a href="https://dorpascal.com/gpa-calculator" target="_blank">English</a>
+        </nav>
     </footer>
     <script src="../js/courses.js"></script>
 </body>
+
 </html>
