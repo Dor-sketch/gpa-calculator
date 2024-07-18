@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
 
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7HFKFX0PR"></script>
     <script>
@@ -11,34 +11,34 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Interactive GPA Calculator</title>
+    <title>מחשבון ממוצע ציונים</title>
     <meta name="description"
-        content="Interactive GPA calculator that allows you to add, edit, and calculate your GPA based on course scores and credit points.">
-    <meta name="keywords" content="GPA calculator, interactive, course scores, credit points, calculate GPA, average">
-    <meta name="author" content="Dor Pascal">
+        content="מחשבון ממוצע ציונים לסטודנטים המאפשר להוסיף, לערוך ולחשב את הממוצע המשוקלל שלך באוניברסיטה על בסיס ציוני הקורסים ונקודות הזכות.">
+    <meta name="keywords" content="מחשבון ממוצע ציונים, אינטראקטיבי, ציוני קורסים, נקודות קרדיט, לחשב ממוצע, ממוצע, אוניברסיטת בן גוריון, אוניברסיטת תל אביב, העברית, הפתוחה, בר אילן, הטכניון, המכללה למנהל, המכללה למנהל ראשון לציון״">
+    <meta name="author" content="דור פסקל">
     <link rel="icon" href="favicon.png" type="image/png">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#4A90E2">
     <meta property="og:image" content="https://dorpascal.com/gpa-calculator/preview.png">
     <meta property="og:image:width" content="830">
     <meta property="og:image:height" content="733">
-    <meta property="og:image:alt" content="Interactive GPA Calculator">
+    <meta property="og:image:alt" content="מחשבון ממוצע ציונים אינטראקטיבי">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:secure_url" content="https://dorpascal.com/gpa-calculator/preview.png">
-    <meta property="og:title" content="Interactive GPA Calculator">
+    <meta property="og:title" content="מחשבון ממוצע ציונים אינטראקטיבי">
     <meta property="og:description"
-        content="Interactive GPA calculator that allows you to add, edit, and calculate your GPA based on course scores and credit points.">
+        content="מחשבון ממוצע ציונים אינטראקטיבי המאפשר להוסיף, לערוך ולחשב את הממוצע שלך על בסיס ציוני הקורסים ונקודות הקרדיט.">
     <meta property="og:image" content="https://dorpascal.com/gpa-calculator/preview.png">
-    <meta property="og:url" content="https://dorpascal.com/gpa-calculator">
-    <meta property="og:site_name" content="Interactive GPA Calculator">
-    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://dorpascal.com/gpa-calculator/he/">
+    <meta property="og:site_name" content="מחשבון ממוצע ציונים אינטראקטיבי">
+    <meta property="og:locale" content="he_IL">
     <meta property="og:type" content="website">
-    <meta name="author" content="Dor Pascal">
+    <meta name="author" content="דור פסקל">
     <meta property="og:published_time" content="2024-07-11">
     <meta property="og:modified_time" content="2024-07-12">
     <meta property="og:updated_time" content="2024-07-12">
-    <link rel="canonical" href="https://dorpascal.com/gpa-calculator">
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="canonical" href="https://dorpascal.com/gpa-calculator/he/">
+    <link rel="stylesheet" href="../styles/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
@@ -49,36 +49,49 @@
             width: 100%;
             border-collapse: collapse;
         }
+css
+Copy code
+    th,
+    td {
+        border: 1px solid #ddd;
+    }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-        }
+    th {
+        background-color: #f2f2f2;
+        text-align: center;
+    }
 
-        th {
-            background-color: #f2f2f2;
-            text-align: left;
-        }
+    .editable:hover {
+        background-color: #f0f0f0;
+        cursor: pointer;
+    }
 
-        .editable:hover {
-            background-color: #f0f0f0;
-            cursor: pointer;
-        }
+    .highlighted {
+        background-color: #d0ffd0;
+    }
 
-        .highlighted {
-            background-color: #d0ffd0;
-        }
+    .edit,
+    .delete {
+        cursor: pointer;
+    }
 
-        .edit,
-        .delete {
-            cursor: pointer;
-        }
-    </style>
+    #tutorial {
+    text-align: right;
+    }
+
+    .close {
+    float: left;
+    cursor: pointer;
+    }
+
+    h1 {
+    margin-right: 10px;
+    }
+</style>
 </head>
-
 <body>
     <header>
-        <h1>GPA Calculator</h1>
+        <h1>מחשבון ממוצע ציונים</h1>
         <div class="header-buttons">
             <button onclick="loadCourses()" aria-label="Load Courses">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 100 100">
@@ -110,7 +123,7 @@
                         points="77.5,60.451 77.5,30.5 59.5,11.5 18.5,11.5 18.5,84.5 69.944,84.5 70.319,84.5 70.319,91.383 83.417,91.383 83.417,74.721 90.458,74.721">
                     </polygon>
                 </svg>
-                <span id="loadCoursesText">Upoad</span>
+                <span id="loadCoursesText">טען</span>
             </button>
             <button onclick="saveCourses()" aria-label="Save Courses">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 100 100">
@@ -142,7 +155,7 @@
                         d="M77.501,89.29L77.5,89.291L65.894,76.51h6.446V62.404h5.162v-3h-5.162	c-1.657,0-3,1.343-3,3V73.51h-3.446c-1.187,0-2.263,0.7-2.743,1.786c-0.481,1.086-0.276,2.352,0.522,3.231l11.606,12.781	c0.569,0.626,1.375,0.983,2.221,0.983c0,0,0.001,0,0.001,0V89.29z"
                         opacity=".35"></path>
                 </svg>
-                <span id="saveCoursesText">Export</span>
+                <span id="saveCoursesText">ייצא</span>
             </button>
             <button onclick="showTutorial()" aria-label="Show Tutorial">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 100 100">
@@ -163,30 +176,30 @@
                         d="M56.3438835,64.627121V52.8391457v-5.658226c0-2.0833015-1.6888504-3.7721519-3.7721519-3.7721519 h-6.9156151h-2.3575974c-2.604126,0-4.7151871,2.1110573-4.7151871,4.7151833v0.0000114 c0,2.6041222,2.1110611,4.7151833,4.7151871,4.7151833h2.3575974V64.627121h-2.3575974 c-2.604126,0-4.7151871,2.1110611-4.7151871,4.7151871v0.0000076c0,2.604126,2.1110611,4.7151871,4.7151871,4.7151871h2.3575974 h10.687767h2.3575974c2.604126,0,4.7151871-2.1110611,4.7151871-4.7151871V69.342308 c0-2.604126-2.1110611-4.7151871-4.7151871-4.7151871H56.3438835z">
                     </path>
                 </svg>
-                <span id="tutorialText">Tutorial</span>
+                <span id="tutorialText">מדריך</span>
             </button>
         </div>
     </header>
     <div class="container">
         <div id="averageContainer">
-            <h2>Average GPA: <span id="averageGPA">0.00</span></h2>
+            <h2>ממוצע: <span id="averageGPA">0.00</span></h2>
         </div>
         <div class="form-group">
-            <label for="score">Score:<span id="scoreValue">50</span></label>
+            <label for="score">ציון:<span id="scoreValue">50</span></label>
             <input type="range" id="score" min="0" max="100" step="1" oninput="updateScoreValue(this.value)">
         </div>
         <div class="form-group">
-            <label for="points">Points: <span id="pointsValue">5</span></label>
+            <label for="points">נקודות: <span id="pointsValue">5</span></label>
             <input type="range" id="points" min="0" max="12" step="1" oninput="updatePointsValue(this.value)">
         </div>
         <div id="courseListContainer">
             <table id="courseTable">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Score</th>
-                        <th>Points</th>
-                        <th>Action</th>
+                        <th>שם</th>
+                        <th>ציון</th>
+                        <th>נקודות</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="courseList"></tbody>
@@ -197,24 +210,19 @@
         <div class="modal-content">
             <span class="close" onclick="closeTutorial()">&times;</span>
             <div id="tutorial">
-                <p>This tool allows you to add, edit, and calculate your GPA based on course scores and credit points.
-                </p>
-                <p>Use the sliders to input the score and points for each course, and click "Add Course" to add it to
-                    the list. Click on any course in the list to edit it.</p>
+                <p>כלי זה מאפשר לך להוסיף, לערוך ולחשב את ה-GPA שלך על בסיס ציוני הקורסים ונקודות הקרדיט.</p>
+                <p>השתמשו במחוונים כדי להזין את הציון והנקודות לכל קורס, ולחצו על "הוסף קורס" כדי להוסיף אותו לרשימה. לחצו על כל קורס ברשימה כדי לערוך אותו.</p>
             </div>
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 Dor Pascal. All rights reserved.</p>
-        <nav>
-            <a href="https://dorpascal.com" target="_blank">dorpascal.com</a>
-            <a href="https://dorpascal.com/gpa-calculator" target="_blank">Interactive GPA Calculator</a>
-            <a href="/he/" target="_blank">עברית</a>
-            </nav>
-        </nav>
-        <p>Visit my website: <a href="https://dorpascal.com" target="_blank">dorpascal.com</a></p>
+    <nav>
+        <a href="https://dorpascal.com/about" target="_blank">אודות</a>
+        <a href="https://dorpascal.com/contact" target="_blank">צור קשר</a>
+        <a href="https://dorpascal.com" target="_blank">dorpascal.com</a>
+        <a href="https://dorpascal.com/gpa-calculator" target="_blank">English</a>
+    </nav>
     </footer>
-    <script src="./js/courses.js"></script>
+    <script src="../js/courses.js"></script>
 </body>
-
 </html>

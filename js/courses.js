@@ -1,8 +1,62 @@
 let courses = [];
+
+// Function to translate course names based on the browser's language
+function translateCourseNames(courses) {
+    const lang = document.documentElement.lang;
+    console.log('lang', lang);
+
+    // Example translations for French (fr)
+    const translations = {
+        'en': {
+            'Math': 'Math',
+            'Science': 'Science',
+            'History': 'History',
+            'English': 'English',
+            'Art': 'Art'
+        },
+        'fr': {
+            'Math': 'Mathématiques',
+            'Science': 'Science',
+            'History': 'Histoire',
+            'English': 'Anglais',
+            'Art': 'Art'
+        },
+        'he': {
+            'Math': 'אינפי 1',
+            'Science': 'ביולוגיה ללא ביולוגים',
+            'History': 'היסטוריה כללית',
+            'English': 'אנגלית',
+            'Art': 'אומנות של העת העתיקה'
+        }
+    };
+
+    // Check if there are translations for the current language, otherwise default to English
+    const currentTranslations = translations[lang] || translations['en'];
+
+    // Translate course names
+    return courses.map(course => ({
+        ...course,
+        name: currentTranslations[course.name] || course.name
+    }));
+}
+
+
 function addEmptyCourse() {
     const curAvg = calculateGPA().toFixed(2);
     const coursesLength = courses.length;
-    courses.push({ name: `Course ${coursesLength}`, score: curAvg, points: 5 });
+    // check language
+    const lang = document.documentElement.lang;
+    let courseName = '';
+    if (lang === 'fr') {
+        courseName = `Cours ${coursesLength}`;
+    }
+    else if (lang === 'he') {
+        courseName = `קורס ${coursesLength}`;
+    }
+    else {
+        courseName = `Course ${coursesLength}`;
+    }
+    courses.push({ name: courseName, score: curAvg, points: 5 });
     updateCourseList();
     updateAverageGPA();
 }
@@ -173,7 +227,8 @@ function updateCourseList() {
 
         const deleteCell = document.createElement('td');
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
+        // add id
+        deleteButton.classList.add('deleteButton');
         deleteButton.onclick = () => deleteCourse(i);
         deleteCell.appendChild(deleteButton);
         row.appendChild(deleteCell);
@@ -186,7 +241,7 @@ function updateCourseList() {
     const cell = document.createElement('td');
     cell.colSpan = 4;
     const addButton = document.createElement('button');
-    addButton.textContent = 'Add Course';
+    addButton.classList.add('addButton');
     addButton.onclick = addEmptyCourse;
     cell.appendChild(addButton);
     row.appendChild(cell);
@@ -224,6 +279,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'English', score: 65, points: 1 },
         { name: 'Art', score: 55, points: 1 },
     ];
+    console.log('courses', courses);
+    courses = translateCourseNames(courses);
 
     updateCourseList();
     updateAverageGPA();
