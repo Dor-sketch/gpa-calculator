@@ -63,14 +63,31 @@
     outline-offset: 2px;
 }
 
-header:first-child {
-    margin-left: 10px;
-}
 
-header:last-child {
-    margin-right: 10px;
+
+h1 {
+margin: 10px;
 }
 
 .header-buttons {
-margin-left: 10px;
+margin: 10px;
+}
+
+@media (max-width: 300px) {
+    .header-buttons {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 160px) {
+    header {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+th {
+text-align: center;
 }
