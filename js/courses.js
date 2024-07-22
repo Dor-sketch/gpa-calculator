@@ -1,5 +1,4 @@
 let courses = [];
-
 // Function to translate course names based on the browser's language
 function translateCourseNames(courses) {
     const lang = document.documentElement.lang;
@@ -119,6 +118,8 @@ function loadCourses() {
                 });
                 Swal.fire('Success', 'Courses loaded successfully', 'success');
                 updateCourseList();
+                updateAverageGPA();
+                console.log('courses', courses);
             };
             reader.readAsText(file);
         }
