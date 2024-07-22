@@ -1,10 +1,9 @@
 let courses = [];
-// Function to translate course names based on the browser's language
+let sortOrder = true;  // true for ascending, false for descending
+
 function translateCourseNames(courses) {
     const lang = document.documentElement.lang;
     console.log('lang', lang);
-
-    // Example translations for French (fr)
     const translations = {
         'en': {
             'Math': 'Math',
@@ -29,30 +28,24 @@ function translateCourseNames(courses) {
         }
     };
 
-    // Check if there are translations for the current language, otherwise default to English
     const currentTranslations = translations[lang] || translations['en'];
 
-    // Translate course names
-    return courses.map(course => ({
-        ...course,
-        name: currentTranslations[course.name] || course.name
-    }));
+    return courses.map(
+        course =>
+            ({ ...course, name: currentTranslations[course.name] || course.name }));
 }
 
 
 function addEmptyCourse() {
     const curAvg = calculateGPA().toFixed(2);
     const coursesLength = courses.length;
-    // check language
     const lang = document.documentElement.lang;
     let courseName = '';
     if (lang === 'fr') {
         courseName = `Cours ${coursesLength}`;
-    }
-    else if (lang === 'he') {
+    } else if (lang === 'he') {
         courseName = `קורס ${coursesLength}`;
-    }
-    else {
+    } else {
         courseName = `Course ${coursesLength}`;
     }
     courses.push({ name: courseName, score: curAvg, points: 5 });
@@ -85,12 +78,13 @@ function updateAverageGPA() {
     document.getElementById('averageGPA').textContent = gpa.toFixed(2);
     const averageContainer = document.getElementById('averageContainer');
     const h2Element = averageContainer.querySelector('h2');
-    if (h2Element) { // Check if the h2 element exists
+    if (h2Element) {
         h2Element.style.backgroundColor = getShadeBasedOnScore(gpa);
     }
 }
 function saveCourses() {
-    const csvContent = 'data:text/csv;charset=utf-8,' + courses.map(e => `${e.name},${e.score},${e.points}`).join('\n');
+    const csvContent = 'data:text/csv;charset=utf-8,' +
+        courses.map(e => `${e.name},${e.score},${e.points}`).join('\n');
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
@@ -140,7 +134,8 @@ function makeCellEditable(cell, index, key) {
 
     cell.addEventListener('blur', () => {
         cell.contentEditable = false;
-        const newValue = key === 'name' ? cell.textContent : parseFloat(cell.textContent);
+        const newValue =
+            key === 'name' ? cell.textContent : parseFloat(cell.textContent);
         if (newValue !== originalValue) {
             courses[index][key] = newValue;
             updateAverageGPA();
@@ -177,10 +172,14 @@ function makeCellEditable(cell, index, key) {
 }
 
 function getNextCell(cell, shiftKeyOrDirection, vertical = false) {
-    const currentCellIndex = Array.prototype.indexOf.call(cell.parentElement.children, cell);
-    const currentRowIndex = Array.prototype.indexOf.call(cell.parentElement.parentElement.children, cell.parentElement);
-    const nextCellIndex = currentCellIndex + (vertical ? 0 : (shiftKeyOrDirection ? -1 : 1));
-    const nextRowIndex = currentRowIndex + (vertical ? (shiftKeyOrDirection ? -1 : 1) : 0);
+    const currentCellIndex =
+        Array.prototype.indexOf.call(cell.parentElement.children, cell);
+    const currentRowIndex = Array.prototype.indexOf.call(
+        cell.parentElement.parentElement.children, cell.parentElement);
+    const nextCellIndex =
+        currentCellIndex + (vertical ? 0 : (shiftKeyOrDirection ? -1 : 1));
+    const nextRowIndex =
+        currentRowIndex + (vertical ? (shiftKeyOrDirection ? -1 : 1) : 0);
 
     const rows = document.querySelectorAll('#courseList tr');
     if (nextRowIndex >= 0 && nextRowIndex < rows.length) {
@@ -217,27 +216,21 @@ function updateCourseList() {
         makeCellEditable(scoreCell, i, 'score');
         scoreCell.onclick = () => highlightRow(i);
         row.appendChild(scoreCell);
-
-
         const pointsCell = document.createElement('td');
         pointsCell.textContent = course.points;
         pointsCell.classList.add('editable');
         makeCellEditable(pointsCell, i, 'points');
         pointsCell.onclick = () => highlightRow(i);
         row.appendChild(pointsCell);
-
         const deleteCell = document.createElement('td');
         const deleteButton = document.createElement('button');
-        // add id
         deleteButton.classList.add('deleteButton');
         deleteButton.onclick = () => deleteCourse(i);
         deleteCell.appendChild(deleteButton);
         row.appendChild(deleteCell);
-
         table.appendChild(row);
     }
 
-    // add las row with big add button
     const row = document.createElement('tr');
     const cell = document.createElement('td');
     cell.colSpan = 4;
@@ -247,7 +240,6 @@ function updateCourseList() {
     cell.appendChild(addButton);
     row.appendChild(cell);
     table.appendChild(row);
-
 }
 
 function highlightRow(index) {
@@ -258,14 +250,15 @@ function highlightRow(index) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
- const headers = document.querySelectorAll('#courseTable th');
+    const headers = document.querySelectorAll('#courseTable th');
 
     headers.forEach((header, index) => {
-        if (header.textContent === 'Name' || header.textContent === 'Score' || header.textContent === 'Points') {
+        if (header.textContent === 'Name' || header.textContent === 'Score' ||
+            header.textContent === 'Points') {
             header.style.cursor = 'pointer';
             header.addEventListener('click', () => {
-            console.log('sort order', sortOrder);
-                sortOrder = !sortOrder; // Toggle sort order for next click
+                console.log('sort order', sortOrder);
+                sortOrder = !sortOrder;
                 sortTableByColumn(index, sortOrder);
                 addShadesBasedOnScore();
             });
@@ -289,30 +282,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getShadeBasedOnScore(score) {
-    // Example: Return a shade of green for high scores, and red for low scores
-    if (score > 90) return '#ccffcc'; // Light green
-    else if (score > 80) return '#ccffcc'; // Light green
-    else if (score > 60) return '#ffffcc'; // Light yellow
-    else if (score > 40) return '#ffcccc'; // Light red
-    else if (score > 20) return '#ffcccc'; // Light red
-    else return '#ffcccc'; // Light red
+    if (score > 90)
+        return '#ccffcc';  // Light green
+    else if (score > 80)
+        return '#ccffcc';  // Light green
+    else if (score > 60)
+        return '#ffffcc';  // Light yellow
+    else if (score > 40)
+        return '#ffcccc';  // Light red
+    else if (score > 20)
+        return '#ffcccc';  // Light red
+    else
+        return '#ffcccc';  // Light red
 }
 
 function showTutorial() {
-    document.getElementById("tutorialPopup").style.display = "block";
+    document.getElementById('tutorialPopup').style.display = 'block';
 }
 
 function closeTutorial() {
-    document.getElementById("tutorialPopup").style.display = "none";
+    document.getElementById('tutorialPopup').style.display = 'none';
 }
 
 // Close the modal when the user clicks anywhere outside of the modal
-window.onclick = function(event) {
-    if (event.target == document.getElementById("tutorialPopup")) {
-        document.getElementById("tutorialPopup").style.display = "none";
+window.onclick = function (event) {
+    if (event.target == document.getElementById('tutorialPopup')) {
+        document.getElementById('tutorialPopup').style.display = 'none';
     }
 }
-    let sortOrder = true; // true for ascending, false for descending
+
 
 
 function sortTableByColumn(columnIndex, ascending = true) {
@@ -320,20 +318,22 @@ function sortTableByColumn(columnIndex, ascending = true) {
     const rowsWithLast = Array.from(table.querySelectorAll('tr'));
     // remove the last empty row
     const rows = rowsWithLast.slice(0, rowsWithLast.length - 1);
-    const columnType = columnIndex === 1 ? 'number' : 'string'; // Assuming Score is the second column
+    const columnType = columnIndex === 1 ? 'number' : 'string';
 
-    const sortedRows = rows.sort((a, b) => {
-        const aVal = a.querySelectorAll('td')[columnIndex].textContent;
-        const bVal = b.querySelectorAll('td')[columnIndex].textContent;
+    const sortedRows = rows.sort(
+        (a, b) => {
+            const aVal = a.querySelectorAll('td')[columnIndex].textContent;
+            const bVal = b.querySelectorAll('td')[columnIndex].textContent;
 
-        if (columnType === 'number') {
-            return ascending ? aVal - bVal : bVal - aVal;
-        } else {
-            return ascending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+            if (columnType === 'number') {
+                return ascending ? aVal - bVal : bVal - aVal;
+            } else {
+                return ascending ? aVal.localeCompare(bVal) :
+                    bVal.localeCompare(aVal);
+            }
         }
-    }
 
-        );
+    );
 
 
     // Add the last empty row back
@@ -348,7 +348,7 @@ function sortTableByColumn(columnIndex, ascending = true) {
 function addShadesBasedOnScore() {
     const rows = document.querySelectorAll('#courseTable tbody tr');
     rows.forEach(row => {
-        const score = parseInt(row.querySelectorAll('td')[1].textContent, 10); // Assuming Score is the second column
+        const score = parseInt(row.querySelectorAll('td')[1].textContent, 10);
         row.style.backgroundColor = getShadeBasedOnScore(score);
     });
 }
